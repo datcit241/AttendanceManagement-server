@@ -22,7 +22,7 @@ sudo yum install nodejs -y
 ```
 
 ### Install MongoDB
-Create '/etc/yum.repos.d/mongodb-org-6.0.repo'
+Create **`/etc/yum.repos.d/mongodb-org-6.0.repo`**
 ```
 [mongodb-org-6.0]
 name=MongoDB Repository
