@@ -1,3 +1,12 @@
+### Start the server on EC2 and keep it running
+#### Install [Forever](https://github.com/foreversd/forever)
+```shell
+npm install forever -g
+```
+#### Start the server
+```shell
+forever start index.js
+```
 
 ### Install NodeJS
 ```shell
