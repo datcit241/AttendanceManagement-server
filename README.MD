@@ -1,22 +1,8 @@
-### Start the server on EC2 and keep it running
-#### With [forever](https://github.com/foreversd/forever)
-##### Install forever
-```shell
-sudo npm install forever -g
-```
-##### Start the server
-```shell
-forever start index.js
-```
-#### Alternatively
-Before starting the server run the following to produce a persistent environement:
-```shell
-screen
-```
-When reconnecting to EC2 instance run the following to reconnect to that environment:
-```shell
-screen -r
-```
+## Table of contents
+- [Set up](#set-up)
+- [Start the server and keep it running](#start-the-server-and-keep-it-running)
+
+## Set up
 ### Install NodeJS
 ```shell
 # Update the system packages
@@ -47,4 +33,32 @@ gpgkey=https://www.mongodb.org/static/pgp/server-6.0.asc
 ```
 ```shell
 sudo yum install -y mongodb-org
+```
+### Install project's dependencies
+```shell
+npm install
+```
+
+## Start the server and keep it running
+### With [forever](https://github.com/foreversd/forever)
+#### Install forever
+```shell
+sudo npm install forever -g
+```
+#### Start the server
+```shell
+forever start index.js
+```
+#### To stop the server
+```shell
+forever stop index.js
+```
+### Alternatively
+Before starting the server run the following to produce a persistent environement:
+```shell
+screen
+```
+When reconnecting to EC2 instance run the following to reconnect to that environment:
+```shell
+screen -r
 ```
