@@ -1,13 +1,22 @@
 ### Start the server on EC2 and keep it running
-#### Install [Forever](https://github.com/foreversd/forever)
+#### With [forever](https://github.com/foreversd/forever)
+##### Install forever
 ```shell
-npm install forever -g
+sudo npm install forever -g
 ```
-#### Start the server
+##### Start the server
 ```shell
 forever start index.js
 ```
-
+#### Alternatively
+Before starting the server run the following to produce a persistent environement:
+```shell
+screen
+```
+When reconnecting to EC2 instance run the following to reconnect to that environment:
+```shell
+screen -r
+```
 ### Install NodeJS
 ```shell
 # Update the system packages
