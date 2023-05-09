@@ -13,13 +13,17 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-validator": "^7.0.1",
     "forever-monitor": "^3.0.3",
     "fs": "0.0.1-security",
     "https": "^1.0.0",
     "jsonwebtoken": "^9.0.0",
-    "mongoose": "^7.0.5"
+    "mongoose": "^7.0.5",
+    "mysql": "^2.18.1"
   },
   "devDependencies": {
     "install": "^0.13.0",
