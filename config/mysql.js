@@ -2,7 +2,7 @@ let mysql = require('mysql');
 let conn = mysql.createConnection({
   host: 'localhost', // Replace with your host name
   user: 'root',      // Replace with your database username
-  password: '1234',      // Replace with your database password
+  password: 'root',      // Replace with your database password
   database: 'attendance_management' // // Replace with your database Name
 }); 
  

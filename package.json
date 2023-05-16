@@ -22,8 +22,10 @@
     "fs": "0.0.1-security",
     "https": "^1.0.0",
     "jsonwebtoken": "^9.0.0",
+    "mariadb": "^3.1.2",
     "mongoose": "^7.0.5",
-    "mysql": "^2.18.1"
+    "mysql": "^2.18.1",
+    "sequelize": "^6.31.1"
   },
   "devDependencies": {
     "install": "^0.13.0",
