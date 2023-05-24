@@ -56,7 +56,7 @@ app.post("/login", async (req, res) => {
 
         if (user && (await bcrypt.compare(password, user.password))) {
             const token = jwt.sign(
-                {user_id: user._id, email},
+                {user_id: user.id, email},
                 process.env.JWT_KEY,
                 {
                     expiresIn: "2h",
@@ -72,8 +72,13 @@ app.post("/login", async (req, res) => {
 
 const auth = require("../middleware/auth");
 
-app.post("/welcome", auth, (req, res) => {
-    res.status(200).send("Welcome 🙌 ");
+app.post("/welcome", auth, async (req, res) => {
+    res.status(200).send({msg: "Welcome 🙌"});
 });
+
+app.get("/getCurrentUser", auth, async (req, res) => {
+    const user = await User.findOne({where: {email: req.user.email}});
+    res.send({user});
+})
 
 module.exports = app;

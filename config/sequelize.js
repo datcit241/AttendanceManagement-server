@@ -10,8 +10,8 @@ const signer = new Signer({
     port: +process.env.DB_PORT
 });
 
-const getToken = () => {
-    return signer.getAuthToken();
+const getToken = async () => {
+    return await signer.getAuthToken();
 }
 
 const sequelize = new Sequelize(
@@ -24,8 +24,8 @@ const sequelize = new Sequelize(
         dialectOptions: {
             ssl: {ca: fs.readFileSync("ap-southeast-1-bundle.pem")},
             authPlugins: {
-                mysql_clear_password: () => () => {
-                    return getToken();
+                mysql_clear_password: () => async () => {
+                    return await getToken();
                 }
             }
         },
@@ -36,7 +36,12 @@ const sequelize = new Sequelize(
             idle: 10000
         },
         logQueryParameters: true
-    });
+    }
+);
+
+sequelize.beforeConnect(async (config) => {
+    config.password = await getToken();
+});
 
 try {
     sequelize.authenticate();

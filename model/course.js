@@ -4,6 +4,7 @@ const {Sequelize} = require("sequelize");
 const Course = sequelize.define('course', {
     code: {
         type: Sequelize.STRING,
+        unique: true,
     },
     name: {
         type: Sequelize.STRING,
@@ -12,6 +13,6 @@ const Course = sequelize.define('course', {
     freezeTableName: true
 })
 
-Course.sync({force: true})
+Course.sync({alter: true});
 
 module.exports = Course;
