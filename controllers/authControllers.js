@@ -3,7 +3,8 @@ const jwt = require("jsonwebtoken");
 const {Router} = require("express");
 const app = Router();
 
-const User = require("../model/user");
+const dataContext = require("../models");
+const User = dataContext["User"];
 
 app.post("/register", async (req, res) => {
     try {
@@ -36,7 +37,6 @@ app.post("/register", async (req, res) => {
                 }
             );
             user.token = token;
-
             await user.save();
 
             res.status(201).send({msg: "Registration successful"});
@@ -62,7 +62,9 @@ app.post("/login", async (req, res) => {
                     expiresIn: "2h",
                 }
             );
+
             user.token = token;
+            await user.save();
 
             return res.status(200).json(user);
         }

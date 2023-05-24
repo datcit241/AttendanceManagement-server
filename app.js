@@ -7,6 +7,8 @@ const app = express();
 
 app.use(express.json());
 
+require("./seeders");
+
 app.use(authController);
 app.use("/courses", coursesController);
 

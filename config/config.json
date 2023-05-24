@@ -1,0 +1,18 @@
+{
+  "development": {
+    "region": "ap-southeast-1",
+    "username": "cloud9",
+    "port": 3306,
+    "password": null,
+    "database": "attendance_management",
+    "host": "attendance-management.copnpj9wwoef.ap-southeast-1.rds.amazonaws.com",
+    "dialect": "mariadb",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "idle": 10000
+    },
+    "logQueryParameters": true
+  },
+  "production": {}
+}
