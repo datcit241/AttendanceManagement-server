@@ -13,7 +13,7 @@ app.post("/register", async (req, res) => {
         if (!(email && password && first_name && last_name)) {
             return res.status(400).send("All input is required");
         } else {
-            const oldUser = await User.findOne({email});
+            const oldUser = await User.findOne({where: {email}});
 
             if (oldUser) {
                 return res.status(409).send("User Already Exist. Please Login");
@@ -28,14 +28,16 @@ app.post("/register", async (req, res) => {
                 password: encryptedPassword,
             });
 
-            const token = jwt.sign(
-                {user_id: user._id, email},
+            const token = await jwt.sign(
+                {user_id: user.id, email},
                 process.env.JWT_KEY,
                 {
                     expiresIn: "2h",
                 }
             );
             user.token = token;
+
+            await user.save();
 
             res.status(201).send({msg: "Registration successful"});
         }
@@ -50,7 +52,7 @@ app.post("/login", async (req, res) => {
     if (!(email && password)) {
         return res.status(400).send("All input is required");
     } else {
-        const user = await User.findOne({email});
+        const user = await User.findOne({where: {email}});
 
         if (user && (await bcrypt.compare(password, user.password))) {
             const token = jwt.sign(
@@ -70,7 +72,7 @@ app.post("/login", async (req, res) => {
 
 const auth = require("../middleware/auth");
 
-app.post("/welcome", (req, res) => {
+app.post("/welcome", auth, (req, res) => {
     res.status(200).send("Welcome 🙌 ");
 });
 

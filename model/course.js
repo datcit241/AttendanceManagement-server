@@ -2,7 +2,7 @@ const sequelize = require("../config/sequelize");
 const {Sequelize} = require("sequelize");
 
 const Course = sequelize.define('course', {
-    coe: {
+    code: {
         type: Sequelize.STRING,
     },
     name: {
