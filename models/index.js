@@ -10,9 +10,15 @@ const config = require(__dirname + "/../config/config.json")[env];
 const db = {};
 
 const AWS = require("aws-sdk");
+
 const {Signer} = AWS.RDS;
 
-const signer = new Signer({...config, hostname: config.host});
+const signer = new Signer(
+    {
+        ...config,
+        hostname: config.host,
+    }
+);
 
 const getToken = async () => {
     return await signer.getAuthToken();
@@ -58,6 +64,10 @@ fs
     .forEach(file => {
         const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
         db[model.name] = model;
+        model.sync()
+            .then(r => console.log(`Sync ${model.name}`))
+            .catch(e => console.log(`Sync failed - model ${model.name}`, e))
+        ;
     });
 
 Object.keys(db).forEach(modelName => {

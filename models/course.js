@@ -27,7 +27,5 @@ module.exports = (sequelize, DataTypes) => {
         modelName: 'Course',
     });
 
-    Course.sync({alter: true});
-
     return Course;
 };
