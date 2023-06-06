@@ -1,11 +1,11 @@
 {
   "development": {
     "region": "ap-southeast-1",
-    "username": "root",
+    "username": "admin",
     "port": 3306,
-    "password": "root",
+    "password": "adminadmin",
     "database": "attendance_management",
-    "host": "localhost",
+    "host": "attendance-management.copnpj9wwoef.ap-southeast-1.rds.amazonaws.com",
     "dialect": "mariadb",
     "pool": {
       "max": 5,
