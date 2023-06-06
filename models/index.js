@@ -21,14 +21,19 @@ const signer = new Signer(
 );
 
 const getToken = async () => {
+    if (env === "development") {
+        return Promise.resolve(config.password);
+    }
     return await signer.getAuthToken();
 }
 
-const dialectOptions = {
-    ssl: {ca: fs.readFileSync("ap-southeast-1-bundle.pem")},
-    authPlugins: {
-        mysql_clear_password: () => async () => {
-            return await getToken();
+if (env === "production") {
+    config.dialectOptions = {
+        ssl: {ca: fs.readFileSync("ap-southeast-1-bundle.pem")},
+        authPlugins: {
+            mysql_clear_password: () => async () => {
+                return await getToken();
+            }
         }
     }
 }
@@ -37,7 +42,7 @@ let sequelize;
 if (config.use_env_variable) {
     sequelize = new Sequelize(process.env[config.use_env_variable], config);
 } else {
-    sequelize = new Sequelize(config.database, config.username, config.password, {...config, dialectOptions});
+    sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
 sequelize.beforeConnect(async (config) => {

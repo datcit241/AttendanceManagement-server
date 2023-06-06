@@ -1,6 +1,21 @@
 {
   "development": {
     "region": "ap-southeast-1",
+    "username": "root",
+    "port": 3306,
+    "password": "root",
+    "database": "attendance_management",
+    "host": "localhost",
+    "dialect": "mariadb",
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "idle": 10000
+    },
+    "logQueryParameters": true
+  },
+  "production": {
+    "region": "ap-southeast-1",
     "username": "cloud9",
     "port": 3306,
     "password": null,
@@ -13,6 +28,5 @@
       "idle": 10000
     },
     "logQueryParameters": true
-  },
-  "production": {}
+  }
 }
