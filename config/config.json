@@ -1,11 +1,11 @@
 {
   "development": {
     "region": "ap-southeast-1",
-    "username": "admin",
+    "username": "root",
     "port": 3306,
-    "password": "adminadmin",
+    "password": "root",
     "database": "attendance_management",
-    "host": "attendance-management.copnpj9wwoef.ap-southeast-1.rds.amazonaws.com",
+    "host": "127.0.0.1",
     "dialect": "mariadb",
     "pool": {
       "max": 5,
@@ -15,12 +15,12 @@
     "logQueryParameters": true
   },
   "production": {
-    "region": "ap-southeast-1",
-    "username": "cloud9",
+    "region": "us-east-1",
+    "username": "aws3",
     "port": 3306,
     "password": null,
     "database": "attendance_management",
-    "host": "attendance-management.copnpj9wwoef.ap-southeast-1.rds.amazonaws.com",
+    "host": "database-1.cftf83fzcrs3.us-east-1.rds.amazonaws.com",
     "dialect": "mariadb",
     "pool": {
       "max": 5,

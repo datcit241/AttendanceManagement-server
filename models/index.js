@@ -29,7 +29,7 @@ const getToken = async () => {
 
 if (env === "production") {
     config.dialectOptions = {
-        ssl: {ca: fs.readFileSync("ap-southeast-1-bundle.pem")},
+        ssl: {ca: fs.readFileSync("us-east-1-bundle.pem")},
         authPlugins: {
             mysql_clear_password: () => async () => {
                 return await getToken();
@@ -69,10 +69,10 @@ fs
     .forEach(file => {
         const model = require(path.join(__dirname, file))(sequelize, Sequelize.DataTypes);
         db[model.name] = model;
-        model.sync()
-            .then(r => console.log(`Sync ${model.name}`))
-            .catch(e => console.log(`Sync failed - model ${model.name}`, e))
-        ;
+        // model.sync()
+        //     .then(r => console.log(`Sync ${model.name}`))
+        //     .catch(e => console.log(`Sync failed - model ${model.name}`, e))
+        // ;
     });
 
 Object.keys(db).forEach(modelName => {
@@ -80,6 +80,8 @@ Object.keys(db).forEach(modelName => {
         db[modelName].associate(db);
     }
 });
+
+sequelize.sync();
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
