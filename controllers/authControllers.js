@@ -80,7 +80,7 @@ app.post("/welcome", auth, async (req, res) => {
     res.status(200).send({msg: "Welcome 🙌"});
 });
 
-app.get("/getCurrentUser", auth, async (req, res) => {
+app.get("/current-user", auth, async (req, res) => {
     const user = await User.findOne({where: {email: req.user.email}});
     res.send({user});
 })

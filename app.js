@@ -8,6 +8,11 @@ const fileUploadController = require("./controllers/fileUploadController")
 
 const app = express();
 
+const cors = require('cors');
+app.use(cors({
+    origin: '*'
+}));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
